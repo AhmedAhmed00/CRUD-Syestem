@@ -1,0 +1,126 @@
+h1 {
+  color: #09c;
+}
+
+.search-icon-container {
+  width: 50px;
+}
+
+.icon i {
+  color: #09c;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+table {
+  border: 1px solid black;
+}
+
+table th {
+  background-color: #777 !important;
+  margin: 5px !important;
+  color: white;
+}
+
+.inputs input {
+  margin-bottom: 10px;
+}
+.inputs label {
+  margin-bottom: 5px;
+}
+
+.inputs {
+  width: 50%;
+  z-index: -10;
+  animation-name: change-width;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+.crud-inputs {
+  opacity: 0;
+  animation: change-opacity;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  caret-color: #09c;
+}
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-add,
+.btn-add:hover,
+.btn-add:focus {
+  border-color: #198754;
+  color: #198754;
+}
+.btn-cancel,
+.btn-cancel:hover,
+.btn-cancel:focus {
+  border-color: red;
+  color: red;
+}
+
+td {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.crud-inputs {
+  z-index: 2;
+}
+
+.layer {
+  z-index: 1;
+  opacity: 0;
+  animation: change-opacity;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+}
+
+.alert-added {
+  width: 200px;
+  height: 60px;
+  bottom: 20px;
+  right: -600px;
+  z-index: 324;
+  transition: all 0.3s;
+}
+
+@keyframes hide {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes change-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes change-width {
+  0% {
+    width: 55%;
+  }
+  50% {
+    width: 45%;
+  }
+  to {
+    width: 50%;
+  }
+}
+
+td i {
+  cursor: pointer;
+}

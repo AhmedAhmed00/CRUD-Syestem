@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="crud position-relative py-5">
+      <div
+        class="crud-inputs overflow-hidden min-vh-100 top-0 start-0 end-0 bottom-0 position-absolute bg-dark bg-opacity-50 d-none"
+      >
+        <div
+          class="alert-added d-flex justify-content-center align-items-center rounded-3 text-white position-fixed bg-success fs-5 fw-bold"
+        >
+          <p>Success</p>
+        </div>
+        <div
+          class="inputs mx-auto bg-white p-3 position-fixed translate-middle start-50 top-50 rounded-3 shadow-lg"
+        >
+          <div class="name">
+            <label for="">Product Name:</label>
+            <input type="text" class="form-control input" id="productName" />
+          </div>
+
+          <div class="category">
+            <label for="">Product Category:</label>
+            <input
+              type="text"
+              class="form-control input"
+              id="productCategory"
+            />
+          </div>
+          <div class="price">
+            <label for="">Product price:</label>
+            <input
+              type="text"
+              class="form-control input"
+              data-price="price"
+              id="productPrice"
+            />
+          </div>
+
+          <div class="quntity">
+            <label for="">Product Quantity:</label>
+            <input
+              type="text"
+              id="productQunatity"
+              class="form-control mb-3 input"
+            />
+          </div>
+          <div class="buttons">
+            <button class="btn btn-add add-procuct">Add</button>
+            <button class="btn btn-cancel">Cancel</button>
+            <button class="btn btn-warning d-none update">Update</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="layer d-none bg-opacity-25 w-100 position-fixed top-0 bottom-0 bg-black d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="rounded-3 bg-light shadow-lg p-4 layer-content position-absolute text-white text-center"
+        >
+          <p class="fs-5 m-4 text-black">
+            Are You Sure You want To Delete This Item
+          </p>
+
+          <button type="submit" class="btn btn-success text confirm-yes">
+            Yes, delete
+          </button>
+          <button class="btn btn-danger text confirm-cancel">Cancel</button>
+        </div>
+      </div>
+
+      <div class="w-75 mx-auto p-3 shadow-lg">
+        <h1 class="text-center p-3">CRUD SYSTEM</h1>
+        <div class="icons d-flex mx-auto w-25 justify-content-between">
+          <div class="icon text-center">
+            <i class="fa-solid fa-folder-plus"></i>
+            <p>Create</p>
+          </div>
+          <div class="icon text-center">
+            <i class="fa-solid fa-book"></i>
+            <p>Read</p>
+          </div>
+          <div class="icon text-center">
+            <i class="fa-solid fa-file-export"></i>
+            <p>Update</p>
+          </div>
+          <div class="icon text-center">
+            <i class="fa-solid fa-trash"></i>
+            <p>Delete</p>
+          </div>
+        </div>
+
+        <div class="buttons m-3 text-center">
+          <button class="btn btn-add btn-add-product fw-semibold">
+            <i class="fa-regular fa-square-plus"></i>
+            Add Product
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group my-3 w-75 mx-auto">
+        <span
+          class="input-group-text d-flex justify-content-center flex-nowrap search-icon-container"
+          id="basic-addon1"
+        >
+          <i
+            class="fa-solid fa-magnifying-glass-plus position-absolute search-icon opacity-75"
+          ></i>
+        </span>
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Search"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <table class="table w-75 m-auto text-center table-striped">
+        <thead class="">
+          <th>Index</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script src="js/mine.js"></script>
+  </body>
+</html>
