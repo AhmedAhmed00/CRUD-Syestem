@@ -18,9 +18,8 @@ let arrOfProducts = [];
 // check if local the storage inclues data
 if (localStorage.getItem("products") != null) {
   arrOfProducts = JSON.parse(localStorage.getItem("products"));
-  displayProducts();
+  displayProducts(arrOfProducts);
 }
-
 displayInputsBtn.addEventListener("click", displayInputs);
 cancelBtn.addEventListener("click", cancelAddProcess);
 addProductBtn.addEventListener("click", addProduct);
@@ -34,7 +33,7 @@ tableBody.addEventListener("click", (e) => {
         hideConfrirm();
         arrOfProducts.splice(e.target.id, 1);
         addToLocalStorage();
-        displayProducts();
+        displayProducts(arrOfProducts);
       }
     };
   }
@@ -62,7 +61,7 @@ tableBody.addEventListener("click", (e) => {
         arrOfProducts[e.target.id] = newObj;
         alertAddedMsg();
         addToLocalStorage();
-        displayProducts();
+        displayProducts(arrOfProducts);
       } else {
         alertErorrMsg();
         validateName();
@@ -184,13 +183,13 @@ productPrice.onblur = function () {
   validatePrice();
 };
 
-//  to add data to local storage
+// to add data to local storage
 function addToLocalStorage() {
   localStorage.setItem("products", JSON.stringify(arrOfProducts));
 }
 
 // function to display the data of inputs in table
-function displayProducts() {
+function displayProducts(arrOfProducts) {
   let tableRows = "";
   for (let i = 0; i < arrOfProducts.length; i++) {
     tableRows += `
@@ -217,42 +216,22 @@ function showConfirm() {
 }
 function hideConfrirm() {
   confirmLayer.style.animationName = "hide";
-  // confirmLayer.classList.add("d-none");
-  // confirmLayer.style.animationName = "change-opacity";
   setTimeout(() => {
     confirmLayer.classList.add("d-none");
     confirmLayer.style.animationName = "change-opacity";
   }, 300);
 }
 // function to search in data
-searchInput.addEventListener("keyup", (e) => {
-  let newarr = [];
-  newarr = arrOfProducts.filter((element) => {
+searchInput.addEventListener("keyup", (letter) => {
+  let arrAfterSearch = [];
+  arrAfterSearch = arrOfProducts.filter((element) => {
     return (
       element.theName.includes(searchInput.value) ||
       element.theName.toUpperCase().includes(searchInput.value)
     );
   });
-  displayAfterSearch(newarr);
+  displayProducts(arrAfterSearch);
 });
-
-// fuction to display data after search
-function displayAfterSearch(arrAfterSearch) {
-  let tableRows = "";
-  for (let i = 0; i < arrAfterSearch.length; i++) {
-    tableRows += `
-    <tr>
-            <td >${[i]}</td>
-            <td>${arrAfterSearch[i].theName}</td>
-            <td>${arrAfterSearch[i].category}</td>
-            <td>${arrAfterSearch[i].quantity}</td>
-            <td>${arrAfterSearch[i].price * arrAfterSearch[i].quantity}</td>
-            <td><i id="${i}"  i class="fas fa-edit update-product text-warning "></i></td>
-            <td ><i id="${i}" class="del delete-product fa-solid fa-trash  text-danger"></i></td>
-          </tr>`;
-  }
-  tableBody.innerHTML = tableRows;
-}
 
 // alert added
 function alertAddedMsg() {
@@ -264,12 +243,12 @@ function alertAddedMsg() {
     alertAdd.style.right = "-600px";
   }, 2000);
 }
+// alert eroor
 function alertErorrMsg() {
   let alertAdd = document.querySelector(".alert-added");
   alertAdd.textContent = "Invalid Data";
   alertAdd.style.right = "50px";
   alertAdd.classList.replace("bg-success", "bg-danger");
-  console.log(alertAdd);
   setTimeout(() => {
     alertAdd.style.right = "-600px";
   }, 2000);
