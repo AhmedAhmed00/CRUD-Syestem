@@ -25,25 +25,58 @@ displayInputsBtn.addEventListener("click", displayInputs);
 cancelBtn.addEventListener("click", cancelAddProcess);
 addProductBtn.addEventListener("click", addProduct);
 
-// function to send the id to delte function
+// event listner to delete product
 tableBody.addEventListener("click", (e) => {
   if (e.target.classList.contains("del")) {
     showConfirm();
-    deltetProduct(e.target.getAttribute("id"));
+    confirmYesBtn.onclick = function () {
+      {
+        hideConfrirm();
+        arrOfProducts.splice(e.target.id, 1);
+        addToLocalStorage();
+        displayProducts();
+      }
+    };
   }
 });
 
-// function to send the id to update function
+// event listner to update product
 tableBody.addEventListener("click", (e) => {
   if (e.target.classList.contains("update-product")) {
-    console.log(e.target);
+    updateBtn.classList.remove("d-none");
+    addProductBtn.classList.add("d-none");
     displayInputs();
-    updateData(e.target.getAttribute("id"));
+    updateBtn.onclick = function () {
+      let newObj = {
+        theName: productName.value,
+        category: productCategory.value,
+        price: productPrice.value,
+        quantity: productQunatity.value,
+      };
+      if (
+        validateName() &&
+        validateCategory() &&
+        validatePrice() &&
+        validateQuan()
+      ) {
+        arrOfProducts[e.target.id] = newObj;
+        alertAddedMsg();
+        addToLocalStorage();
+        displayProducts();
+      } else {
+        alertErorrMsg();
+        validateName();
+        validateCategory();
+        validatePrice();
+        validateQuan();
+      }
+    };
   }
 });
 
 // function to Display Inputs when click on add btn
 function displayInputs() {
+  addProductBtn.classList.remove("d-none");
   lightBoxInputs.classList.toggle("d-none");
 }
 
@@ -191,49 +224,6 @@ function hideConfrirm() {
     confirmLayer.style.animationName = "change-opacity";
   }, 300);
 }
-
-// to delete product
-function deltetProduct(del) {
-  confirmYesBtn.onclick = function () {
-    {
-      hideConfrirm(); 
-      arrOfProducts.splice(del, 1);
-      addToLocalStorage();
-      displayProducts();
-    }
-  };
-}
-
-// update the data
-function updateData(index) {
-  updateBtn.classList.remove("d-none");
-  updateBtn.onclick = function () {
-    let newObj = {
-      theName: productName.value,
-      category: productCategory.value,
-      price: productPrice.value,
-      quantity: productQunatity.value,
-    };
-    if (
-      validateName() &&
-      validateCategory() &&
-      validatePrice() &&
-      validateQuan()
-    ) {
-      arrOfProducts[index] = newObj;
-      alertAddedMsg();
-      addToLocalStorage();
-      displayProducts();
-    } else {
-      alertErorrMsg();
-      validateName();
-      validateCategory();
-      validatePrice();
-      validateQuan();
-    }
-  };
-}
-
 // function to search in data
 searchInput.addEventListener("keyup", (e) => {
   let newarr = [];
