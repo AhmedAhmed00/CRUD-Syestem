@@ -109,7 +109,7 @@ function addProduct() {
   ) {
     arrOfProducts.push(product);
     addToLocalStorage();
-    displayProducts();
+    displayProducts(arrOfProducts);
     alertAddedMsg();
   } else {
     validateName();
